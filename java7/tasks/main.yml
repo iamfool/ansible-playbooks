@@ -1,0 +1,9 @@
+- name: uninstall java6
+  yum: name=java-1.6.0-openjdk state=absent
+
+- name: install java7
+  yum: name=java-1.7.0-openjdk state=present
+
+- name: install java7-devel
+  yum: name=java-1.7.0-openjdk-devel state=present
+

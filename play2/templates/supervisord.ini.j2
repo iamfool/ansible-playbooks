@@ -1,0 +1,9 @@
+[program:${application}]
+process_name=${application}
+command=/home/ec2-user/www/${application}/target/start -Dhttp.address=${play_bind_address} -Dhttp.port=${play_bind_port} -Dconfig.file=./conf/test.conf -Xms128M -Xmx512m
+autostart=true
+autorestart=true
+startsecs=30
+stopwaitsecs=30
+stdout_logfile=/var/log/supervisor/${application}.log
+stderr_logfile=/var/log/supervisor/${application}_error.log

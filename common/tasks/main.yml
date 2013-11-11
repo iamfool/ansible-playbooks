@@ -58,3 +58,7 @@
 
 - name: copy ssh key for deploy
   copy: src=files/deploy.pem dest=/home/ec2-user/.ssh/deploy.pem mode=0600
+
+- name: set timezone
+  file: src=/usr/share/zoneinfo/${timezone} dest=/etc/localtime state=link force=yes
+  sudo: true

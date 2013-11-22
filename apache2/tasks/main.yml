@@ -1,0 +1,24 @@
+- name: install apache2
+  yum: name=httpd state=latest
+  sudo: true
+
+- name: change home directory permissions
+  file: path=/home/ec2-user state=directory mode=0711
+
+- name: mkdir www
+  file: path=/home/ec2-user/www state=directory owner=ec2-user group=ec2-user
+
+- name: mkdir documentroot
+  file: path=/home/ec2-user/www/${application} state=directory owner=ec2-user group=ec2-user
+
+- name: start apache2
+  service: name=httpd state=started enabled=yes
+  sudo: true
+
+- name: copy vhosts.conf
+  template: src=vhosts.conf.j2 dest=/etc/httpd/conf.d/vhosts.conf
+  sudo: yes
+
+- name: restart apache2
+  service: name=httpd state=restarted
+  sudo: true

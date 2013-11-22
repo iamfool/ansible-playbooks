@@ -1,0 +1,9 @@
+NameVirtualHost *:80
+
+<VirtualHost *:80>
+    ServerAdmin ${server_admin}
+    DocumentRoot /home/ec2-user/www/${application}
+    ServerName ${server_name}
+    ErrorLog logs/${application}.error_log
+    CustomLog logs/${application}.access_log common
+</VirtualHost>
